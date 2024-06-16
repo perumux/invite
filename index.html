@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hangout Invitation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            flex-direction: column;
+            text-align: center;
+        }
+        #question {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        #buttons {
+            margin-bottom: 20px;
+        }
+        .btn {
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: white;
+        }
+        .btn-yes {
+            background-color: green;
+        }
+        .btn-no {
+            background-color: red;
+        }
+        .heart {
+            font-size: 50px;
+            color: red;
+        }
+        .flowers {
+            color: pink;
+        }
+    </style>
+</head>
+<body>
+    <div id="question">Hello pretty lady, would you be interested in spending some quality individual, undisturbed time with moi?</div>
+    <div id="buttons">
+        <button class="btn btn-yes" onclick="handleYes()">Yes</button>
+        <button class="btn btn-no" onclick="handleNo()">No</button>
+    </div>
+    <div id="heart" class="heart" style="display: none;">
+        ❤️ <span class="flowers">🌸🌺🌼</span>
+    </div>
+
+    <script>
+        const questions = [
+            "Are you sure?",
+            "How about if I get you a Cinnabon?",
+            "Would you reconsider for a Lumiere?",
+            "What if I get you an iced coffee?"
+        ];
+        let questionIndex = 0;
+
+        function handleYes() {
+            // If already asked "Are you sure?" go back to initial question
+            if (document.getElementById('question').textContent === "Are you sure?") {
+                document.getElementById('question').textContent = "Hello pretty lady, would you be interested in spending some quality individual, undisturbed time with moi?";
+                questionIndex = 0; // Reset question index
+            } else {
+                document.getElementById('question').style.display = 'none';
+                document.getElementById('buttons').style.display = 'none';
+                document.getElementById('heart').style.display = 'block';
+            }
+        }
+
+        function handleNo() {
+            if (questionIndex < questions.length) {
+                document.getElementById('question').textContent = questions[questionIndex];
+                questionIndex++;
+            } else {
+                document.getElementById('question').textContent = "Are you sure?";
+                questionIndex = 0; // Reset question index to loop
+            }
+        }
+    </script>
+</body>
+</html>
